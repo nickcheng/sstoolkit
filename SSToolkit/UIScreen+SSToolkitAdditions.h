@@ -48,4 +48,18 @@
  */
 - (BOOL)isRetinaDisplay;
 
+/**
+ Returns a Boolean indicating if the screen is a 3.5 inch Retina display.
+ 
+ @return A Boolean indicating if the screen is a 3.5 inch Retina display.
+ */
+- (BOOL)is35inchRetinaDisplay;
+
+/**
+ Returns a Boolean indicating if the screen is a 4 inch Retina display.
+ 
+ @return A Boolean indicating if the screen is a 4 inch Retina display.
+ */
+- (BOOL)is4inchRetinaDisplay;
+
 @end
