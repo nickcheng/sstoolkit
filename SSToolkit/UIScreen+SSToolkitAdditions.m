@@ -37,16 +37,14 @@
 	return answer;
 }
 
-- (BOOL)is35inchRetinaDisplay
-{
+- (BOOL)is35inchRetinaDisplay {
 	static dispatch_once_t predicate;
 	static BOOL answer;
   
 	dispatch_once(&predicate, ^{
     if (![self isRetinaDisplay])
       answer = NO;
-    else
-    {
+    else {
       CGFloat pixelHeight = (CGRectGetHeight(self.bounds) * 2.0f);
       answer = (pixelHeight == 960.0f);
     }
@@ -54,16 +52,14 @@
 	return answer;
 }
 
-- (BOOL)is4inchRetinaDisplay
-{
+- (BOOL)is4inchRetinaDisplay {
 	static dispatch_once_t predicate;
 	static BOOL answer;
   
 	dispatch_once(&predicate, ^{
     if (![self isRetinaDisplay])
       answer = NO;
-    else
-    {
+    else {
       CGFloat pixelHeight = (CGRectGetHeight(self.bounds) * 2.0f);
       answer = (pixelHeight == 1136.0f);
     }
