@@ -88,7 +88,7 @@
 	// Top border
 	CGContextSetStrokeColorWithColor(context, _lineColor.CGColor);
 	CGContextMoveToPoint(context, 0.0f, 0.0f);
-	CGContextAddLineToPoint(context, rect.size.width, 0.0f);
+	CGContextAddLineToPoint(context, rect.size.width, rect.size.height);
 	CGContextStrokePath(context);
 }
 
