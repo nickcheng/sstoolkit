@@ -16,6 +16,17 @@
 ///--------------
 
 /**
+ Returns the sub-string of the receiver. Length is calculated by chinese length.
+ 
+ @param length The length you want
+ 
+ @return String you want
+
+ @see chineseLength
+ */
+- (NSString *)substringByChineseLength:(NSInteger)length;
+
+/**
  Returns length of  the receiver. Two English charactor count 1.
  
  @return The length of the receiver. Two English charactor count 1.
