@@ -11,6 +11,17 @@
  */
 @interface NSString (SSToolkitAdditions)
 
+///--------------
+/// @name Added by nickcheng
+///--------------
+
+/**
+ Returns length of  the receiver. Two English charactor count 1.
+ 
+ @return The length of the receiver. Two English charactor count 1.
+ */
+- (int)chineseLength;
+
 ///------------------------
 /// @name Checking Contents
 ///------------------------

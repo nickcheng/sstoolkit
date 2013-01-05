@@ -12,6 +12,20 @@
 
 @implementation NSString (SSToolkitAdditions)
 
+-(int)chineseLength {
+  float number = 0.0;
+  for (int index = 0; index < [self length]; index++) {
+    NSString *character = [self substringWithRange:NSMakeRange(index, 1)];
+    
+    if ([character lengthOfBytesUsingEncoding:NSUTF8StringEncoding] == 3) {
+      number++;
+    } else {
+      number = number + 0.5;
+    }
+  }
+  return ceil(number);
+}
+
 - (BOOL)containsString:(NSString *)string {
 	return !NSEqualRanges([self rangeOfString:string], NSMakeRange(NSNotFound, 0));
 }
