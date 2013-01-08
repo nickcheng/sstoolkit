@@ -12,6 +12,13 @@
 @interface UIDevice (SSToolkitAdditions)
 
 /**
+ Returns `YES` if the device is jailbroken.
+ 
+ @return `YES` if the device is jailbroken and `NO` if it is not.
+ */
+- (BOOL)isJailbroken;
+
+/**
  Returns `YES` if the device is a simulator.
  
  @return `YES` if the device is a simulator and `NO` if it is not.

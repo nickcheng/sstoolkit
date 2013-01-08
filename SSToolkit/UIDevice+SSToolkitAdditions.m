@@ -10,6 +10,26 @@
 
 @implementation UIDevice (SSToolkitAdditions)
 
+- (BOOL)isJailbroken {
+#if TARGET_IPHONE_SIMULATOR
+  return NO;
+#else
+  //
+  static NSString *cydiaPath = @"/Applications/Cydia.app";
+  static NSString *aptPath = @"/private/var/lib/apt/";
+  
+  BOOL jailbroken = NO;
+  if ([[NSFileManager defaultManager] fileExistsAtPath:cydiaPath]) {
+    jailbroken = YES;
+  }
+  if ([[NSFileManager defaultManager] fileExistsAtPath:aptPath]) {
+    jailbroken = YES;
+  }
+  
+  return jailbroken;
+#endif
+}
+
 - (BOOL)isSimulator {
 	static NSString *simulatorModel = @"iPhone Simulator";
 	return [[self model] isEqualToString:simulatorModel];	
