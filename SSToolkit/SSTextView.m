@@ -10,15 +10,11 @@
 
 @interface SSTextView ()
 - (void)_initialize;
-- (void)_updateShouldDrawPlaceholder;
 - (void)_textChanged:(NSNotification *)notification;
 @end
 
 
-@implementation SSTextView {
-	BOOL _shouldDrawPlaceholder;
-}
-
+@implementation SSTextView
 
 #pragma mark - Accessors
 
@@ -27,7 +23,7 @@
 
 - (void)setText:(NSString *)string {
 	[super setText:string];
-	[self _updateShouldDrawPlaceholder];
+	[self setNeedsDisplay];
 }
 
 
@@ -37,25 +33,25 @@
 	}
 	
 	_placeholder = string;
-	[self _updateShouldDrawPlaceholder];
+	[self setNeedsDisplay];
 }
 
 
 - (void)setContentInset:(UIEdgeInsets)contentInset {
 	[super setContentInset:contentInset];
-	[self _updateShouldDrawPlaceholder];
+	[self setNeedsDisplay];
 }
 
 
 - (void)setFont:(UIFont *)font {
 	[super setFont:font];
-	[self _updateShouldDrawPlaceholder];
+	[self setNeedsDisplay];
 }
 
 
 - (void)setTextAlignment:(NSTextAlignment)textAlignment {
 	[super setTextAlignment:textAlignment];
-	[self _updateShouldDrawPlaceholder];
+	[self setNeedsDisplay];
 }
 
 
@@ -87,7 +83,7 @@
 - (void)drawRect:(CGRect)rect {
 	[super drawRect:rect];
 
-	if (_shouldDrawPlaceholder) {
+	if (self.text.length == 0 && self.placeholder) {
 		// Inset the rect
 		rect = UIEdgeInsetsInsetRect(rect, self.contentInset);
 
@@ -110,22 +106,11 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_textChanged:) name:UITextViewTextDidChangeNotification object:self];
 	
 	self.placeholderTextColor = [UIColor colorWithWhite:0.702f alpha:1.0f];
-	_shouldDrawPlaceholder = NO;
-}
-
-
-- (void)_updateShouldDrawPlaceholder {
-	BOOL previous = _shouldDrawPlaceholder;
-	_shouldDrawPlaceholder = self.placeholder && self.placeholderTextColor && self.text.length == 0;
-	
-	if (previous != _shouldDrawPlaceholder) {
-		[self setNeedsDisplay];
-	}
 }
 
 
 - (void)_textChanged:(NSNotification *)notification {
-	[self _updateShouldDrawPlaceholder];	
+	[self setNeedsDisplay];
 }
 
 @end
